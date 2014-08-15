@@ -1,0 +1,27 @@
+{
+	"name": "mbrennan-twa-test",
+	"title": "Matthew Brennan The White Agency Test",
+	"description": "Front End Dev Test",
+	"keywords": [
+		"front-end"
+	],
+	"version": "1.0.0",
+	"author": {
+		"name": "Matthew Brennan",
+		"email": "mdbrennan@yahoo.com",
+		"url": "https://github.com/mdbrennan"
+	},	
+	"licenses": [
+		{
+			"type": "MIT",
+			"url": "http://opensource.org/licenses/MIT"
+		}
+	],
+	"bugs": "https://github.com/mdbrennan/the-white-agency/issues",
+	"homepage": "http://github.com/mdbrennan/the-white-agency/",
+	"docs": "http://github.com/mdbrennan/the-white-agency/",
+	"download": "https://github.com/mdbrennan/the-white-agency/archive/master.zip",
+	"dependencies": {
+		"jquery": ">=11.11.1"
+	}
+}
