@@ -8,13 +8,15 @@
  */
 // global JS object
 var TWA = function() {		
-		var self;
+		var self, _lightBox;
 	return{	
 		init: function(){
 			self=this;
+			_lightBox = $('#lightbox');
 
 			//load the lightbox up;
 			self.openLightBox();
+
 			$(".open-lightbox").click(self.openLightBox);	
 
 		},
@@ -25,13 +27,12 @@ var TWA = function() {
 			var bar = element.find('.bar');
 			var status = element.find('.lb-status');
 
-			$(element).on('click .close', self.closeLightBox);
+			$(element).on('click .close', {bar:bar}, self.closeLightBox);
 
 			bar.width(options.start);
 			element.fadeIn(function(){
 				
-				$(bar).animate({
-			   		opacity: 1,
+				$(bar).animate({			   		
 			   		width: options.finish+'%'			   				   	
 			 	},
 				{
@@ -50,17 +51,26 @@ var TWA = function() {
 			})		
 		},
 
-		closeLightBox: function(){
-			$("#lightbox").fadeOut('fast', function(){
-				$(this).find('.bar').removeClass('complete');
-				$(this).find('.lb-status').removeClass('complete').html("Progress <em>0 %</em>");
+		resetLightbox : function(element){						
+			
+			element.find('.bar').removeClass('complete').width(0);
+			element.find('.lb-status').removeClass('complete').html("Progress <em>0 %</em>");
+
+		},
+
+		closeLightBox: function(e){
+
+			e.data.bar.stop();
+
+			_lightBox.fadeOut('fast', function(){
+				self.resetLightbox($(this));
 			})
 		},
 
 		openLightBox: function(e){			
 			$.getJSON('dist/js/data.json', function(data) {
 				//console.log(data.data.lightbox);				
-				self.progressBar($('#lightbox'), data.data.lightbox);	
+				self.progressBar(_lightBox, data.data.lightbox);	
 			});
 		}	
 	 }
